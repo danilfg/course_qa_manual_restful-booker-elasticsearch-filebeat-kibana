@@ -1,0 +1,32 @@
+filebeat.inputs:
+  - type: container
+    enabled: true
+    paths:
+      - '/var/lib/docker/containers/*/*.log'
+    processors:
+      - add_docker_metadata: ~
+      - add_host_metadata: ~
+      # Удаляем пустые строки или строки с пробелами
+      - drop_event:
+          when:
+            regexp:
+              message: '^\s*$'  # Пустые строки или пробелы
+      # Оставляем только оригинальный лог
+      - drop_fields:
+          fields:
+            - stream
+            - input
+            - log.offset
+            - container.labels.com_docker_compose_*
+          ignore_missing: true
+
+output.elasticsearch:
+  hosts: ["http://es01:9200"]
+  index: "filebeat-%{+yyyy.MM.dd}"
+
+setup.template.name: "filebeat"
+setup.template.pattern: "filebeat-*"
+setup.template.enabled: true
+
+setup.kibana:
+  host: "http://kibana:5601"
