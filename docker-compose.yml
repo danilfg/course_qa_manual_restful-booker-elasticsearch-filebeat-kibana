@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   restful-booker:
-    build: .
+    image: ghcr.io/danilfg/restful-booker:latest
     container_name: restful-booker
     ports:
       - "3001:3001"
@@ -10,7 +8,7 @@ services:
       - elastic
 
   es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    image: ghcr.io/danilfg/elasticsearch:8.8.0
     container_name: es01
     environment:
       - discovery.type=single-node
@@ -22,7 +20,7 @@ services:
       - elastic
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.8.0
+    image: ghcr.io/danilfg/kibana:8.8.0
     container_name: kibana
     environment:
       - ELASTICSEARCH_HOSTS=http://es01:9200
@@ -33,19 +31,35 @@ services:
     networks:
       - elastic
     
-    
   filebeat:
-    image: docker.elastic.co/beats/filebeat:8.8.0
+    image: ghcr.io/danilfg/filebeat:8.8.0
     container_name: filebeat
     user: root
+    networks:
+      - elastic
+    depends_on:
+      - es01
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+    entrypoint: >
+      sh -c 'if [ ! -f /usr/share/filebeat/filebeat.yml ]; then
+      echo "
+      filebeat.inputs:
+        - type: container
+          paths:
+            - /var/lib/docker/containers/*/*.log
+      output.elasticsearch:
+        hosts: [\"http://es01:9200\"]
+        username: \"elastic\"
+        password: \"changeme\"
+      " > /usr/share/filebeat/filebeat.yml;
+      fi;
+      cat /usr/share/filebeat/filebeat.yml;
+      filebeat -e'
     environment:
       - ELASTICSEARCH_HOSTS=http://es01:9200
-    networks:
-      - elastic
 
 networks:
   elastic:
