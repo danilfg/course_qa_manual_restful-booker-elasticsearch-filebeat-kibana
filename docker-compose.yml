@@ -56,8 +56,9 @@ services:
         password: \"changeme\"
       " > /usr/share/filebeat/filebeat.yml;
       fi;
+      chmod 600 /usr/share/filebeat/filebeat.yml;
       cat /usr/share/filebeat/filebeat.yml;
-      filebeat -e'
+      filebeat -e --strict.perms=false'
     environment:
       - ELASTICSEARCH_HOSTS=http://es01:9200
 
