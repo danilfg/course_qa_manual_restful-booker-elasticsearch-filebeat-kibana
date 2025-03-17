@@ -46,18 +46,19 @@
 git clone https://github.com/danilfg/course_qa_manual_restful-booker-elasticsearch-filebeat-kibana.git
 cd course_qa_manual_restful-booker-elasticsearch-filebeat-kibana
 ```
+2️⃣ **Запускаем установленный раннее Docker.**
 
-2️⃣ **Запускаем контейнеры:**
+3️⃣ **Запускаем контейнеры:**
 ```bash
 docker-compose up -d
 ```
 
-3️⃣ **Проверяем работу сервисов:**
+4️⃣ **Проверяем работу сервисов:**
 ```bash
 docker ps
 ```
 
-4️⃣ **Открываем Kibana в браузере:**  
+5️⃣ **Открываем Kibana в браузере:**  
 🔗 `http://localhost:5601`
 
 ---
