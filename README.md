@@ -5,13 +5,11 @@
   🇷🇺 <a href="README_RU.md">Русский</a>
 </p>
 
-![Release](https://img.shields.io/github/v/release/danilfg/docker-compose-setup?label=release&style=flat-square)
 ![Docker Compose](https://img.shields.io/badge/docker-compose-2496ED?logo=docker&logoColor=white&style=flat-square)
 ![Elasticsearch](https://img.shields.io/badge/elasticsearch-005571?logo=elasticsearch&logoColor=white&style=flat-square)
 ![Kibana](https://img.shields.io/badge/kibana-E8478B?logo=kibana&logoColor=white&style=flat-square)
 ![Filebeat](https://img.shields.io/badge/filebeat-00BFB3?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.9+-3776AB?logo=python&logoColor=white&style=flat-square)
-![Last Commit](https://img.shields.io/github/last-commit/danilfg/docker-compose-setup?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
 ---
