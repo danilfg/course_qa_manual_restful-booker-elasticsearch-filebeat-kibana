@@ -1,7 +1,3 @@
-Вот готовый **README на английском + ссылка на русский (`README_RU.md`)** в стиле GitHub 👇
-
----
-
 # 🐳 Docker Compose for Restful Booker, Elasticsearch, Filebeat, Kibana
 
 <p align="center">
