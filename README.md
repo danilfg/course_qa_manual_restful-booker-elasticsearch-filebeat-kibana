@@ -16,12 +16,16 @@
 
 # 👨‍🏫 Author
 
-QA Mentor (Manual & Automation Testing)
-
 **Daniil Nikolaev**
 
-Telegram:
-[https://t.me/aqa_pro_mentor](https://t.me/aqa_pro_mentor)
+QA Automation & DevOps Engineer  
+Creator of open-source testing platforms
+
+Mentor in software testing and distributed systems  
+Consulting companies on test automation and CI/CD infrastructure
+
+Telegram  
+https://t.me/danilfg
 
 ---
 
