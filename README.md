@@ -1,58 +1,61 @@
 # 🐳 Docker Compose for Restful Booker, Elasticsearch, Filebeat, Kibana
 
 <p align="center">
-  🌍 <a href="README.md">English</a> | 
+  🌍 <a href="README.md">English</a> |
   🇷🇺 <a href="README_RU.md">Русский</a>
 </p>
 
-![Docker Compose](https://img.shields.io/badge/docker-compose-2496ED?logo=docker&logoColor=white&style=flat-square)
-![Elasticsearch](https://img.shields.io/badge/elasticsearch-005571?logo=elasticsearch&logoColor=white&style=flat-square)
-![Kibana](https://img.shields.io/badge/kibana-E8478B?logo=kibana&logoColor=white&style=flat-square)
+![Docker Compose](https://img.shields.io/badge/docker-compose-2496ED?logo=docker\&logoColor=white\&style=flat-square)
+![Elasticsearch](https://img.shields.io/badge/elasticsearch-005571?logo=elasticsearch\&logoColor=white\&style=flat-square)
+![Kibana](https://img.shields.io/badge/kibana-E8478B?logo=kibana\&logoColor=white\&style=flat-square)
 ![Filebeat](https://img.shields.io/badge/filebeat-00BFB3?style=flat-square)
-![Python](https://img.shields.io/badge/python-3.9+-3776AB?logo=python&logoColor=white&style=flat-square)
+![Python](https://img.shields.io/badge/python-3.9+-3776AB?logo=python\&logoColor=white\&style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
 ---
 
-👨‍🏫 Author — QA Mentor (Manual & Automation Testing):
-**Daniil Nikolaev** — [https://t.me/aqa_pro_mentor](https://t.me/aqa_pro_mentor)
+# 👨‍🏫 Author
+
+QA Mentor (Manual & Automation Testing)
+
+**Daniil Nikolaev**
+
+Telegram:
+[https://t.me/aqa_pro_mentor](https://t.me/aqa_pro_mentor)
 
 ---
 
-## 📜 Description
+# 📚 About This Project
 
-This repository provides a ready-to-use configuration for deploying:
+This repository provides a **ready-to-use environment for learning log monitoring and observability** using the **ELK stack**.
 
-* **Restful Booker**
-* **Elasticsearch**
-* **Filebeat**
-* **Kibana**
+The environment includes:
 
-using **Docker Compose**.
+* **Restful Booker** — test API used in QA automation training
+* **Elasticsearch** — log storage and search engine
+* **Filebeat** — log collector
+* **Kibana** — visualization and monitoring interface
 
-All Docker images are **publicly available** via **GitHub Container Registry (GHCR)** — no authentication required 🎉
-
-🔗 **Repository:**
-[https://github.com/danilfg/course_qa_manual_restful-booker-elasticsearch-filebeat-kibana.git](https://github.com/danilfg/course_qa_manual_restful-booker-elasticsearch-filebeat-kibana.git)
+All services run using **Docker Compose**, allowing students to quickly start a complete environment for **testing and log analysis practice**.
 
 ---
 
-## 📂 Main Files
+# 🏗 Architecture
 
-### `docker-compose.yml`
+The environment contains the following services:
 
-* Starts all services
-* Defines dependencies between containers
-* Connects configuration files
-
-### `filebeat.yml`
-
-* Configures Filebeat to collect logs from containers
-* Sends logs to **Elasticsearch**
+| Service        | Purpose                               |
+| -------------- | ------------------------------------- |
+| Restful Booker | Test API used for automation practice |
+| Elasticsearch  | Stores logs and provides search       |
+| Filebeat       | Collects container logs               |
+| Kibana         | Visualizes logs and metrics           |
 
 ---
 
-## 🐳 Services & Images
+# 🐳 Docker Images
+
+All images are hosted in **GitHub Container Registry (GHCR)**.
 
 | Service        | Image                            | Version |
 | -------------- | -------------------------------- | ------- |
@@ -61,13 +64,38 @@ All Docker images are **publicly available** via **GitHub Container Registry (GH
 | Kibana         | `ghcr.io/danilfg/kibana`         | 8.8.0   |
 | Filebeat       | `ghcr.io/danilfg/filebeat`       | 8.8.0   |
 
-📌 All images are **public**, no GHCR login required.
+All images are **public**, no authentication required.
 
 ---
 
-## 🚀 Getting Started
+# 💻 System Requirements
 
-### 1️⃣ Clone the repository
+Running Elasticsearch requires sufficient system resources.
+
+### Minimum requirements
+
+| Resource | Recommended |
+| -------- | ----------- |
+| CPU      | 2 cores     |
+| RAM      | 4 GB        |
+| Disk     | 10 GB       |
+
+### Recommended for smooth work
+
+| Resource | Recommended |
+| -------- | ----------- |
+| CPU      | 4 cores     |
+| RAM      | 8 GB        |
+| Disk     | 20+ GB      |
+
+⚠ Elasticsearch is memory-intensive.
+If you experience slow performance, increase Docker memory allocation.
+
+---
+
+# 🚀 Getting Started
+
+## 1️⃣ Clone the repository
 
 ```bash
 git clone https://github.com/danilfg/course_qa_manual_restful-booker-elasticsearch-filebeat-kibana.git
@@ -76,19 +104,32 @@ cd course_qa_manual_restful-booker-elasticsearch-filebeat-kibana
 
 ---
 
-### 2️⃣ Make sure Docker is running
+## 2️⃣ Make sure Docker is running
 
----
-
-### 3️⃣ Start containers
+Verify Docker:
 
 ```bash
-docker-compose up -d
+docker --version
 ```
 
 ---
 
-### 4️⃣ Check running services
+## 3️⃣ Start the environment
+
+```bash
+docker compose up -d
+```
+
+Docker will start:
+
+* Restful Booker API
+* Elasticsearch
+* Filebeat
+* Kibana
+
+---
+
+## 4️⃣ Check running containers
 
 ```bash
 docker ps
@@ -96,73 +137,103 @@ docker ps
 
 ---
 
-### 5️⃣ Open Kibana
+# 📊 Open Kibana
+
+Open in your browser:
 
 👉 [http://localhost:5601](http://localhost:5601)
 
 ---
 
-## 🏗 Configure Index Pattern in Kibana
+# 🔎 Configure Index Pattern in Kibana
 
-After Filebeat starts sending logs to **Elasticsearch**, you need to configure an index pattern in Kibana.
+After Filebeat starts sending logs to Elasticsearch, configure an index pattern.
 
-### Steps:
+### Steps
 
 1️⃣ Open Kibana
-👉 [http://localhost:5601](http://localhost:5601)
+[http://localhost:5601](http://localhost:5601)
 
 2️⃣ Go to
-**Stack Management → Index Patterns**
 
-3️⃣ Click **Create index pattern**
+```
+Stack Management → Index Patterns
+```
 
-4️⃣ Enter:
+3️⃣ Click
 
-```text
+```
+Create index pattern
+```
+
+4️⃣ Enter
+
+```
 filebeat-*
 ```
 
-5️⃣ Select time field: `@timestamp`
+5️⃣ Select time field
 
-6️⃣ Click **Create index pattern**
+```
+@timestamp
+```
 
----
+6️⃣ Click
 
-### ✅ Done!
-
-Now go to:
-
-👉 [http://localhost:5601/app/discover](http://localhost:5601/app/discover)
-
-You should see logs from your containers 🎉
-
----
-
-## ⏹ Stop Services
-
-```bash
-docker-compose down
+```
+Create index pattern
 ```
 
 ---
 
-## 🧪 Use Cases
+# 📈 View Logs
 
-* QA Automation practice
-* Log analysis training
-* ELK stack learning
-* CI/CD environment simulation
+Now open:
 
----
+👉 [http://localhost:5601/app/discover](http://localhost:5601/app/discover)
 
-## ⭐ Support
-
-If you like this project:
-
-* ⭐ Star the repository
-* 🔁 Share it
-* 💬 Give feedback
+You should see logs from containers.
 
 ---
 
-🚀 **Now your full ELK stack + test API is up and running!**
+# 🧪 Learning Scenarios
+
+This environment is useful for learning:
+
+### QA Automation
+
+Analyzing logs from automated API tests.
+
+### Observability
+
+Understanding how logs flow through the ELK stack.
+
+### Debugging
+
+Finding errors in containerized services.
+
+### CI/CD pipelines
+
+Using Elasticsearch and Kibana for monitoring test runs.
+
+---
+
+# ⏹ Stop the Environment
+
+```bash
+docker compose down
+```
+
+---
+
+# ⭐ Support the Project
+
+If this project helps you:
+
+⭐ Star the repository
+🔁 Share it with others
+💬 Provide feedback
+
+---
+
+🚀 **Now your ELK stack and test API environment are ready!**
